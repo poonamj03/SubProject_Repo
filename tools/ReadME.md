@@ -1,0 +1,1 @@
+This folder contains the compiled libraries of wxWidget
