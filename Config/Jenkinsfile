@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    stages {
+    stage('Fetch MSBuild') {
+            steps {
+                 echo "Download the Visual Studio Build Tools executable"
+                 bat 'curl -o vs_BuildTools.exe -L https://aka.ms/vs/17/release/vs_BuildTools.exe'
+                
+                echo "Install the Visual Studio Build Tools silently"
+                bat 'vs_BuildTools.exe --quiet --wait --norestart --installPath "C:\\Program Files\\Jenkins\\BuildTools"'
+          
+               }
+        }
+        stage('Build') {
+            steps {
+                echo "Building..."
+                dir("C:\\Program Files\\Jenkins\\BuildTools\\MSBuild\\Current\\Bin\\"){
+                bat """
+                MSBuild.exe /t:Build /p:Configuration=Debug
+                """
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "Test"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "Deploy"
+            }
+        }
+    }
+}
