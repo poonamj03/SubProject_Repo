@@ -1,6 +1,13 @@
 pipeline {
     agent any
     stages {
+stage("wxWidget Clone"){
+steps{
+echo "Clone wxWidget"
+bat "git clone https://myrepo.com/git.git temp"
+bat "mv temp/.git code/.git"
+bat "rm -rf temp"
+}}
     stage('Fetch MSBuild') {
             steps {
                  echo "Download the Visual Studio Build Tools executable"
