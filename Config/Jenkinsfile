@@ -6,9 +6,9 @@ pipeline {
                  echo "Download the Visual Studio Build Tools executable"
                 // bat 'curl -o vs_BuildTools.exe -L https://aka.ms/vs/17/release/vs_BuildTools.exe'
                
-            echo "Install the Visual Studio Build Tools silently"
-                bat 'vs_BuildTools.exe --quiet --wait --norestart --installPath='./'
-                echo "Current workspace is \$(env.WORKSPACE)"
+                echo "Install the Visual Studio Build Tools silently"
+                //bat 'vs_BuildTools.exe --quiet --wait --norestart --installPath='./'
+                //echo "Current workspace is \$(env.WORKSPACE)"
                
             }
         }
@@ -17,10 +17,10 @@ pipeline {
                 echo 'Current workspace is $(env.WORKSPACE)'
                 echo 'Current workspace is $WORKSPACE'
                 echo "Building..."
-                dir("C:\\Program Files\\Jenkins\\BuildTools\\MSBuild\\Current\\Bin\\"){
-                bat """
-                MSBuild.exe /t:Build /p:Configuration=Debug
-                """
+                //dir("C:\\Program Files\\Jenkins\\BuildTools\\MSBuild\\Current\\Bin\\"){
+                //bat """
+                bat 'MSBuild.exe /t:Build /p:Configuration=Debug'
+                //"""
                 }
             }
         }
