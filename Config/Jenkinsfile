@@ -7,7 +7,7 @@ pipeline {
                 // bat 'curl -o vs_BuildTools.exe -L https://aka.ms/vs/17/release/vs_BuildTools.exe'
                
             echo "Install the Visual Studio Build Tools silently"
-                bat 'vs_BuildTools.exe --quiet --wait --norestart --installPath=./
+                bat 'vs_BuildTools.exe --quiet --wait --norestart --installPath='./'
                 echo "Current workspace is \$(env.WORKSPACE)"
                
             }
