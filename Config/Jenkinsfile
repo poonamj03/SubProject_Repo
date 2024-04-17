@@ -4,10 +4,10 @@ pipeline {
         stage('Fetch MSBuild') {
             steps {
                  echo "Download the Visual Studio Build Tools executable"
-                 bat 'curl -o vs_BuildTools.exe -L https://aka.ms/vs/17/release/vs_BuildTools.exe'
+                // bat 'curl -o vs_BuildTools.exe -L https://aka.ms/vs/17/release/vs_BuildTools.exe'
                
             echo "Install the Visual Studio Build Tools silently"
-                bat 'vs_BuildTools.exe --quiet --wait --norestart --installPath=-C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\GithubPipeline\\'
+                bat 'vs_BuildTools.exe --quiet --wait --norestart --installPath='C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\GithubPipeline\\'
                 echo "Current workspace is \$(env.WORKSPACE)"
                
             }
