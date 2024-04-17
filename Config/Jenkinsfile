@@ -8,7 +8,7 @@ pipeline {
                 
                 echo "Install the Visual Studio Build Tools silently"
                 bat 'vs_BuildTools.exe --quiet --wait --norestart'
-                echo 'Current workspace is $(env.WORKSPACE)'
+                echo "Current workspace is $(env.WORKSPACE)"
                }
         }
         stage('Build') {
