@@ -24,7 +24,7 @@ pipeline {
                 //bat """
                 bat 'MSBuild.exe /t:Build /p:Configuration=Debug'
                 //"""
-                }
+                //}
             }
         }
         stage('wxWidget Clone'){
