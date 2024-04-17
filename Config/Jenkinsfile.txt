@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+    stages {
+    stage('Fetch MSBuild') {
+            steps {
+                 echo "Download the Visual Studio Build Tools executable"
+                 bat 'curl -o vs_BuildTools.exe -L https://aka.ms/vs/17/release/vs_BuildTools.exe'
+                
+                echo "Install the Visual Studio Build Tools silently"
+                bat 'vs_BuildTools.exe --quiet --wait --norestart'
+          
+               }
+        }
+        stage('Build') {
+            steps {
+                echo "Building..."
+                dir("C:\\Program Files\\Jenkins\\BuildTools\\MSBuild\\Current\\Bin\\"){
+                bat """
+                MSBuild.exe /t:Build /p:Configuration=Debug
+                """
+                }
+            }
+        }
+stage("wxWidget Clone"){
+steps{
+echo "Clone wxWidget inside subrepo path"
+bat " git clone --depth 1 --branch v3.2.2.1 https://github.com/wxWidgets/wxWidgets.git  temp"
+bat "cd ../"
+bat "mv -f temp/.git wxWidget_repo/.git"
+bat "mv -f temp/* wxWidget_repo/"
+bat "rm -rf temp"
+}}
+stage("Build wxWidget"){
+echo "Build wxWidget"
+bat "cd wxWidget_repo/"
+
+
+}
+
+        stage('Test') {
+            steps {
+                echo "Test"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "Deploy"
+            }
+        }
+    }
+}
